@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Blog - Likindy Digital Solution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global CSS Variables */
+        
+         :root {
+            --primary-dark: #0F2038;
+            /* Dark Blue from Logo text */
+            --secondary-grey: #6C7A89;
+            /* Grey from Logo sub-text */
+            --background-light: #f0f2f5;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --light-grey-border: #e0e0e0;
+            --accent-blue: #3498db;
+            /* A bright blue for links/buttons */
+            --accent-hover: #2980b9;
+            --cta-green: #2ecc71;
+            /* For "Add to Cart" or success */
+            --cta-green-hover: #27ae60;
+            --error-red: #e74c3c;
+            /* Specific for error messages */
+            --success-green: #27ae60;
+            /* Specific for success messages */
+            --danger-red: #e74c3c;
+            /* For delete actions */
+        }
+        /* General Body and Font Settings */
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        /* Container for content centering and responsiveness */
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        /* Main Header Styles (reused from other static pages) */
+        
+        .main-header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .main-header .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light-grey-border);
+            margin-bottom: 10px;
+        }
+        
+        .main-header .contact-info span,
+        .main-header .social-links a {
+            font-size: 0.9em;
+            color: var(--secondary-grey);
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        
+        .main-header .social-links a:hover {
+            color: var(--primary-dark);
+        }
+        
+        .main-header .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-header .site-branding img {
+            max-height: 50px;
+            width: auto;
+            border-radius: 8px;
+        }
+        
+        .main-header .main-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        .main-header .main-menu li {
+            margin-left: 30px;
+        }
+        
+        .main-header .main-menu a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 1.05em;
+            transition: color 0.3s ease;
+        }
+        
+        .main-header .main-menu a:hover,
+        .main-header .main-menu a.active {
+            color: var(--accent-blue);
+        }
+        
+        .main-header .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .main-header .header-actions a {
+            color: var(--primary-dark);
+            font-size: 1.2em;
+            margin-left: 20px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .main-header .header-actions a:hover {
+            color: var(--accent-blue);
+        }
+        /* Hero Section for Blog */
+        
+        .blog-hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('mobilerepair1.jpg') no-repeat center center/cover;
+            /* Reusing an existing image */
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .blog-hero-section h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .blog-hero-section p {
+            font-size: 1.3em;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        /* Blog Content Section */
+        
+        .blog-content-section {
+            padding: 30px 0;
+            margin-bottom: 60px;
+        }
+        
+        .blog-content-section h2 {
+            font-size: 2.5em;
+            color: var(--primary-dark);
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .blog-content-section h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-blue);
+            border-radius: 2px;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-post {
+            background-color: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-post:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .blog-post-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .blog-post-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-post-content h3 {
+            font-size: 1.7em;
+            color: var(--primary-dark);
+            margin-top: 0;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+        
+        .blog-post-meta {
+            font-size: 0.9em;
+            color: var(--secondary-grey);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .blog-post-meta i {
+            color: var(--accent-blue);
+        }
+        
+        .blog-post-excerpt {
+            font-size: 1em;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .blog-post-link {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: var(--white);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+            /* Aligns button to the start of its flex container */
+        }
+        
+        .blog-post-link:hover {
+            background-color: var(--accent-hover);
+        }
+        /* Main Footer (reused from other static pages) */
+        
+        .main-footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 50px 0 20px;
+            font-size: 0.95em;
+        }
+        
+        .main-footer .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .main-footer .footer-col h4 {
+            color: var(--accent-blue);
+            font-size: 1.4em;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .main-footer .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 50px;
+            height: 3px;
+            background-color: var(--white);
+            border-radius: 2px;
+        }
+        
+        .main-footer .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .main-footer .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .main-footer .footer-col ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .main-footer .footer-col ul li a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .main-footer .footer-col .social-links a {
+            color: var(--white);
+            font-size: 1.5em;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .main-footer .footer-col .social-links a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .main-footer .footer-bottom {
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        /* Responsive Adjustments */
+        
+        @media (max-width: 992px) {
+            .main-header .main-menu {
+                display: none;
+                /* Hide main menu on smaller screens for now */
+            }
+            .main-header .main-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .main-header .site-branding {
+                flex-basis: 100%;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+            .main-header .header-actions {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+            .blog-hero-section h1 {
+                font-size: 2.5em;
+            }
+            .blog-hero-section p {
+                font-size: 1.1em;
+            }
+            .blog-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .main-footer .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .main-footer .footer-col h4::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-header .header-top {
+                flex-direction: column;
+            }
+            .main-header .contact-info span {
+                margin-bottom: 10px;
+            }
+            /* Mobile menu button for small screens */
+            .main-header .main-nav .menu-toggle {
+                display: block;
+                /* Make hamburger icon visible */
+                color: var(--primary-dark);
+                font-size: 1.8em;
+                cursor: pointer;
+                position: absolute;
+                right: 20px;
+            }
+            .main-header .main-menu {
+                display: none;
+                /* Hide default menu */
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 80px;
+                /* Adjust based on header height */
+                left: 0;
+                background-color: var(--white);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+                padding: 10px 0;
+            }
+            .main-header .main-menu.active {
+                display: flex;
+                /* Show menu when active */
+            }
+            .main-header .main-menu ul {
+                flex-direction: column;
+                width: 100%;
+            }
+            .main-header .main-menu li {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+            }
+            .main-header .main-menu a {
+                padding: 12px 0;
+                display: block;
+                border-bottom: 1px solid var(--light-grey-border);
+            }
+            .main-header .main-menu li:last-child a {
+                border-bottom: none;
+            }
+            .main-header .site-branding {
+                margin-left: 20px;
+                /* Adjust logo position */
+                text-align: left;
+            }
+            .main-header .header-actions {
+                display: none;
+                /* Hide other actions on tiny screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container header-top">
+            <div class="contact-info">
+                <span><i class="fas fa-phone-alt"></i> +255 625415484</span>
+                <span><i class="fas fa-envelope"></i> info@likindydigital.co.tz</span>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="container main-nav">
+            <div class="site-branding">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="Likindy Digital Solution Logo">
+                </a>
+            </div>
+            <div class="menu-toggle" id="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav class="main-menu" id="main-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="search.html" title="Search"><i class="fas fa-search"></i></a>
+                <a href="login.html" title="My Account"><i class="fas fa-user"></i></a>
+                <a href="cart.html" title="Cart"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="blog-hero-section">
+            <h1>Our Latest Insights</h1>
+            <p>Stay updated with the latest trends, tips, and news in mobile technology and digital solutions.</p>
+        </section>
+
+        <section class="blog-content-section">
+            <div class="container">
+                <h2>Recent Blog Posts</h2>
+                <div class="blog-grid">
+                    <article class="blog-post">
+                        <img src="assets/images/service2.jpg" alt="Mobile Repair Guide" class="blog-post-image">
+                        <div class="blog-post-content">
+                            <h3>5 Common Mobile Phone Issues & How to Fix Them</h3>
+                            <p class="blog-post-meta">
+                                <i class="fas fa-calendar-alt"></i> June 10, 2024
+                                <i class="fas fa-user"></i> Likindy Team
+                            </p>
+                            <p class="blog-post-excerpt">Experiencing issues with your smartphone? From battery drain to unresponsive screens, learn about the top 5 common problems and simple DIY fixes or when to seek professional help.</p>
+                            <a href="blog-post-1.html" class="blog-post-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post">
+                        <img src="assets/images/downl.jpeg" alt="New Phone Release" class="blog-post-image">
+                        <div class="blog-post-content">
+                            <h3>The Future of Smartphones: What to Expect in 2025</h3>
+                            <p class="blog-post-meta">
+                                <i class="fas fa-calendar-alt"></i> May 28, 2024
+                                <i class="fas fa-user"></i> Tech Analyst
+                            </p>
+                            <p class="blog-post-excerpt">Dive into the exciting predictions for upcoming smartphone technology. Will foldable phones become mainstream? What advancements will we see in AI and camera capabilities?</p>
+                            <a href="blog-post-2.html" class="blog-post-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post">
+                        <img src="assets/images/iphoneb.jpeg" alt="Mobile Accessories Guide" class="blog-post-image">
+                        <div class="blog-post-content">
+                            <h3>Must-Have Mobile Accessories for Every Smartphone User</h3>
+                            <p class="blog-post-meta">
+                                <i class="fas fa-calendar-alt"></i> May 15, 2024
+                                <i class="fas fa-user"></i> Gadget Expert
+                            </p>
+                            <p class="blog-post-excerpt">Enhance your mobile experience with these essential accessories. From power banks to protective cases and versatile earbuds, discover what you need.</p>
+                            <a href="blog-post-3.html" class="blog-post-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post">
+                        <img src="assets/images/shope.jpg" alt="Cybersecurity Tips" class="blog-post-image">
+                        <div class="blog-post-content">
+                            <h3>Top Cybersecurity Tips for Your Mobile Devices</h3>
+                            <p class="blog-post-meta">
+                                <i class="fas fa-calendar-alt"></i> April 20, 2024
+                                <i class="fas fa-user"></i> Security Pro
+                            </p>
+                            <p class="blog-post-excerpt">Protect your personal data and privacy with our top cybersecurity tips. Learn about strong passwords, app permissions, and avoiding phishing scams on your mobile.</p>
+                            <a href="blog-post-4.html" class="blog-post-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post">
+                        <img src="assets/images/flash.jpg" alt="Data Recovery Guide" class="blog-post-image">
+                        <div class="blog-post-content">
+                            <h3>Lost Your Data? A Quick Guide to Mobile Data Recovery</h3>
+                            <p class="blog-post-meta">
+                                <i class="fas fa-calendar-alt"></i> March 5, 2024
+                                <i class="fas fa-user"></i> Data Specialist
+                            </p>
+                            <p class="blog-post-excerpt">Accidentally deleted important files or photos? This guide covers common data loss scenarios and steps you can take to recover your precious mobile data.</p>
+                            <a href="blog-post-5.html" class="blog-post-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+
+                    <article class="blog-post">
+                        <img src="assets/images/ic.jpeg" alt="Smart Home Integration" class="blog-post-image">
+                        <div class="blog-post-content">
+                            <h3>Integrating Your Smartphone with Smart Home Devices</h3>
+                            <p class="blog-post-meta">
+                                <i class="fas fa-calendar-alt"></i> February 18, 2024
+                                <i class="fas fa-user"></i> Smart Living
+                            </p>
+                            <p class="blog-post-excerpt">Discover how your smartphone can become the central hub for controlling your smart home. From lighting to security, make your home smarter and more efficient.</p>
+                            <a href="blog-post-6.html" class="blog-post-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <p>Likindy Digital Solution offers expert mobile phone repair services, high-quality accessories, and professional IT solutions. We are committed to reliability and customer satisfaction.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Zanzibar, Tanzania</p>
+                <p><i class="fas fa-phone-alt"></i> +255 658415488</p>
+                <p><i class="fas fa-envelope"></i> info@likindydigital.co.tz</p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; Likindy Digital All Rights Reserved 2025</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mainMenu = document.getElementById('main-menu');
+
+            if (mobileMenuToggle && mainMenu) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    mainMenu.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

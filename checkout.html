@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Checkout - Likindy Digital Solution</title>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Link to your main CSS file if you have one, for shared styles like --primary-dark etc. -->
+    <!-- <link rel="stylesheet" href="assets/css/main.css"> -->
+
+    <style>
+        /* Define your CSS variables if they are in a separate file, or just use direct values */
+        
+         :root {
+            --primary-dark: #0F2038;
+            --accent-blue: #3498db;
+            --white: #ffffff;
+            --background-light: #f0f2f5;
+            /* A lighter background for cards */
+            --light-grey-border: #e0e0e0;
+            --text-dark: #333;
+            --secondary-grey: #6c757d;
+            --cta-green: #28a745;
+            --cta-green-hover: #218838;
+            --accent-hover: #2980b9;
+            /* Added for general hover effect consistency */
+            --danger-red: #e74c3c;
+        }
+        /* General Body and Container styles (can be from a main.css) */
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* Hero Section (from main.css or adapted) */
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('mobilerepair1.jpg') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-section h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .hero-section p {
+            font-size: 1.3em;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+            opacity: 0;
+            /* Start hidden for animation */
+        }
+        /* Call to Action Buttons (CTA) - General styles */
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--cta-green);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-button:hover {
+            background-color: var(--cta-green-hover);
+            transform: translateY(-2px);
+        }
+        /* Navigation Bar (example from a header.html if you had one) */
+        
+        .navbar {
+            background-color: var(--primary-dark);
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar .logo img {
+            height: 50px;
+            /* Adjust as needed */
+        }
+        
+        .navbar-links ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+        
+        .navbar-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 0;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .navbar-links a:hover,
+        .navbar-links a.active {
+            color: var(--accent-blue);
+            border-bottom: 2px solid var(--accent-blue);
+        }
+        /* Mobile menu button */
+        
+        .menu-toggle {
+            display: none;
+            color: var(--white);
+            font-size: 1.8em;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--primary-dark);
+                position: absolute;
+                top: 70px;
+                /* Adjust based on navbar height */
+                left: 0;
+                padding: 10px 0;
+                z-index: 1000;
+            }
+            .navbar-links.active {
+                display: flex;
+            }
+            .navbar-links ul {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            .navbar-links a {
+                padding: 10px 0;
+                display: block;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Specific styles for the Checkout page */
+        
+        .checkout-header {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .checkout-header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .checkout-header p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .checkout-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .billing-shipping-section,
+        .order-summary-section {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .billing-shipping-section {
+            flex: 2 1 60%;
+            /* Takes more space */
+            min-width: 450px;
+        }
+        
+        .order-summary-section {
+            flex: 1 1 30%;
+            /* Takes less space */
+            min-width: 300px;
+        }
+        
+        .checkout-grid h2 {
+            font-size: 2em;
+            color: var(--primary-dark);
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 10px;
+        }
+        /* Form Styles (reusing from contact/admin) */
+        
+        .form-group {
+            margin-bottom: 18px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 1.05em;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--light-grey-border);
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        /* Payment Methods */
+        
+        .payment-methods {
+            margin-top: 25px;
+        }
+        
+        .payment-methods label {
+            display: block;
+            margin-bottom: 15px;
+            background-color: var(--background-light);
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            border: 2px solid transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .payment-methods label:hover {
+            background-color: #e5e7eb;
+        }
+        
+        .payment-methods input[type="radio"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+            /* Make radio button slightly larger */
+        }
+        
+        .payment-methods input[type="radio"]:checked+span {
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+        
+        .payment-methods input[type="radio"]:checked+span::before {
+            content: '\f00c';
+            /* Font Awesome checkmark icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            margin-right: 5px;
+            color: var(--cta-green);
+        }
+        /* Order Summary */
+        
+        .order-summary-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            gap: 15px;
+            border-bottom: 1px dashed var(--light-grey-border);
+            padding-bottom: 15px;
+        }
+        
+        .order-summary-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .order-summary-item img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .item-details {
+            flex-grow: 1;
+        }
+        
+        .item-details h4 {
+            margin: 0 0 5px 0;
+            font-size: 1.1em;
+            color: var(--primary-dark);
+        }
+        
+        .item-details p {
+            margin: 0;
+            font-size: 0.9em;
+            color: var(--secondary-grey);
+        }
+        
+        .item-total {
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+        
+        .order-total {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-top: 25px;
+            text-align: right;
+        }
+        
+        .place-order-button {
+            background-color: var(--cta-green);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            margin-top: 30px;
+        }
+        
+        .place-order-button:hover {
+            background-color: var(--cta-green-hover);
+            transform: translateY(-3px);
+        }
+        /* Messages (Success/Error - reused from admin pages) */
+        
+        .message {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            opacity: 1;
+            /* Make visible by default in static HTML */
+            /* transition: opacity 0.5s ease-in-out; */
+            /* animation: fadeIn 0.5s forwards; */
+        }
+        
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        /* @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        } */
+        /* Responsive adjustments */
+        
+        @media (max-width: 992px) {
+            .checkout-grid {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .billing-shipping-section,
+            .order-summary-section {
+                flex: 1 1 100%;
+                min-width: unset;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .checkout-header h1 {
+                font-size: 2.2em;
+            }
+            .checkout-header p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Static Header - adapted from what `header.php` might have outputted -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="Likindy Digital Solution Logo">
+                    </a>
+                </div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="navbar-links" id="navbar-links">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="checkout.html" class="active">Checkout</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <!-- Add Admin/Logout if applicable for static demo -->
+                        <li><a href="admin.html">Admin Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- End Static Header -->
+
+
+    <div class="container">
+        <section class="checkout-header">
+            <h1>Checkout</h1>
+            <p>Almost there! Please provide your details to complete your order.</p>
+        </section>
+
+        <!-- Example Checkout Message (can be success or error) -->
+        <!-- <div class="message success">Your order has been placed successfully!</div> -->
+        <!-- <div class="message error">Please fill in all required customer and shipping details.</div> -->
+
+        <form method="POST" action="checkout.html" onsubmit="alert('Order placement is disabled in static demo.'); return false;">
+            <div class="checkout-grid">
+                <div class="billing-shipping-section">
+                    <h2>Billing & Shipping Details</h2>
+                    <!-- This section now contains static pre-filled data -->
+                    <p>You are viewing a static demo. In a live version, your details would be pre-filled.</p>
+                    <div class="form-group">
+                        <label for="customer_name">Full Name:</label>
+                        <input type="text" id="customer_name" name="customer_name" value="Amina Juma" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer_email">Email Address:</label>
+                        <input type="email" id="customer_email" name="customer_email" value="amina.juma@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customer_phone">Phone Number:</label>
+                        <input type="tel" id="customer_phone" name="customer_phone" placeholder="+255 7XX XXX XXX" pattern="^\+?255[0-9]{9}$" value="+255712345678" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shipping_address">Shipping Address (Include Street, City, Region):</label>
+                        <textarea id="shipping_address" name="shipping_address" required>Plot No. 123, Mtoni Kijichi, Dar es Salaam</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="notes">Order Notes (Optional):</label>
+                        <textarea id="notes" name="notes" placeholder="e.g., Delivery instructions, preferred time">Please deliver after 2 PM.</textarea>
+                    </div>
+
+                    <h2>Payment Method</h2>
+                    <div class="payment-methods">
+                        <div class="form-group">
+                            <label>
+                            <input type="radio" name="payment_method" value="Cash on Delivery" checked required>
+                            <span><i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery (COD)</span>
+                        </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                            <input type="radio" name="payment_method" value="Mobile Money Transfer" required>
+                            <span><i class="fa-solid fa-mobile-alt"></i> Mobile Money Transfer (M-Pesa, Tigo Pesa, Airtel Money)</span>
+                        </label>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                            <input type="radio" name="payment_method" value="Bank Transfer" required>
+                            <span><i class="fa-solid fa-bank"></i> Bank Transfer</span>
+                        </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="order-summary-section">
+                    <h2>Your Order Summary</h2>
+                    <!-- Static order items -->
+                    <div class="order-summary-item">
+                        <img src="assets/images/flash.jpg" alt="iPhone Fast Charger">
+                        <div class="item-details">
+                            <h4>iPhone Fast Charger</h4>
+                            <p>Quantity: 1 x Tsh 15,000.00</p>
+                        </div>
+                        <span class="item-total">Tsh 25,000.00</span>
+                    </div>
+                    <div class="order-summary-item">
+                        <img src="assets/images/earphone.jpg" alt="TWS Wireless Earphones">
+                        <div class="item-details">
+                            <h4>TWS Wireless Earphones</h4>
+                            <p>Quantity: 2 x Tsh 15,000.00</p>
+                        </div>
+                        <span class="item-total">Tsh 120,000.00</span>
+                    </div>
+
+                    <div class="order-total">
+                        Total: Tsh 145,000.00
+                    </div>
+
+                    <!-- Button is always enabled in static demo as cart is never "empty" dynamically -->
+                    <button type="submit" name="place_order" class="place-order-button">
+                    <i class="fa-solid fa-check-circle"></i> Place Order
+                </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+    <!-- Static Footer - adapted from what `footer.php` might have outputted -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>About Likindy</h3>
+                <p>Your trusted partner for mobile phone accessories and expert repair services in Zanzibar.</p>
+                <div class="social-icons" style="margin-top: 15px;">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="admin.html">Admin Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fa fa-map-marker-alt"></i> MTONI KWA KISASI, ZANZIBAR, Tanzania</p>
+                <p><i class="fa fa-phone"></i> +255 745 744 266</p>
+                <p><i class="fa fa-envelope"></i> info@likindy.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Likindy Digital Solution. All rights reserved.
+        </div>
+    </footer>
+    <!-- End Static Footer -->
+
+    <script>
+        // Simple JavaScript for mobile menu toggle (if you had one in header.php)
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navbarLinks = document.getElementById('navbar-links');
+
+            if (mobileMenu && navbarLinks) {
+                mobileMenu.addEventListener('click', function() {
+                    navbarLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

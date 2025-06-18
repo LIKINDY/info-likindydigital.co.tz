@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Likindy Digital Solution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global CSS Variables */
+        
+         :root {
+            --primary-dark: #0F2038;
+            /* Dark Blue from Logo text */
+            --secondary-grey: #6C7A89;
+            /* Grey from Logo sub-text */
+            --background-light: #f0f2f5;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --light-grey-border: #e0e0e0;
+            --accent-blue: #3498db;
+            /* A bright blue for links/buttons */
+            --accent-hover: #2980b9;
+            --cta-green: #2ecc71;
+            /* For "Add to Cart" or success */
+            --cta-green-hover: #27ae60;
+            --error-red: #e74c3c;
+            /* Specific for error messages */
+            --success-green: #27ae60;
+            /* Specific for success messages */
+        }
+        /* General Body and Font Settings */
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        /* Container for content centering and responsiveness */
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        /* Main Header Styles (reused from services.html) */
+        
+        .main-header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .main-header .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light-grey-border);
+            margin-bottom: 10px;
+        }
+        
+        .main-header .contact-info span,
+        .main-header .social-links a {
+            font-size: 0.9em;
+            color: var(--secondary-grey);
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        
+        .main-header .social-links a:hover {
+            color: var(--primary-dark);
+        }
+        
+        .main-header .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-header .site-branding img {
+            max-height: 50px;
+            width: auto;
+            border-radius: 8px;
+        }
+        
+        .main-header .main-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        .main-header .main-menu li {
+            margin-left: 30px;
+        }
+        
+        .main-header .main-menu a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 1.05em;
+            transition: color 0.3s ease;
+        }
+        
+        .main-header .main-menu a:hover,
+        .main-header .main-menu a.active {
+            color: var(--accent-blue);
+        }
+        
+        .main-header .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .main-header .header-actions a {
+            color: var(--primary-dark);
+            font-size: 1.2em;
+            margin-left: 20px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .main-header .header-actions a:hover {
+            color: var(--accent-blue);
+        }
+        /* Shop Page Header */
+        
+        .shop-page-header {
+            background-color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+        /* Section Title (Common) */
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            color: var(--primary-dark);
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-blue);
+            border-radius: 2px;
+        }
+        /* Products List Container */
+        
+        .products-list {
+            margin-bottom: 60px;
+        }
+        /* Product Grid */
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+        /* Product Card */
+        
+        .product-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-card img {
+            width: 100%;
+            height: 220px;
+            /* Adjusted height for product images */
+            object-fit: cover;
+            border-bottom: 1px solid var(--light-grey-border);
+        }
+        
+        .product-card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        
+        .product-card-content h3 {
+            font-size: 1.8em;
+            color: var(--primary-dark);
+            margin-top: 0;
+            margin-bottom: 10px;
+            height: 2.4em;
+            /* Limit title to 2 lines */
+            overflow: hidden;
+        }
+        
+        .product-card-content .description {
+            font-size: 0.95em;
+            color: var(--secondary-grey);
+            margin-bottom: 15px;
+            flex-grow: 1;
+            height: 4.5em;
+            /* Limit description to 3 lines */
+            overflow: hidden;
+        }
+        
+        .product-card-content .price {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 20px;
+        }
+        
+        .product-card-content .view-details-button {
+            display: inline-block;
+            background-color: var(--accent-blue);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+        }
+        
+        .product-card-content .view-details-button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+        /* Main Footer Styles (reused from services.html) */
+        
+        .main-footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 40px 0 20px 0;
+            font-size: 0.95em;
+        }
+        
+        .main-footer .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .main-footer .footer-col h4 {
+            color: var(--accent-blue);
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        .main-footer .footer-col p,
+        .main-footer .footer-col ul {
+            color: rgba(255, 255, 255, 0.7);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .main-footer .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .main-footer .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .main-footer .footer-col ul li a:hover {
+            color: var(--white);
+        }
+        
+        .main-footer .social-links a {
+            color: var(--white);
+            font-size: 1.5em;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .main-footer .social-links a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .main-footer .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        /* Responsive Adjustments */
+        
+        @media (max-width: 992px) {
+            .main-header .main-menu {
+                display: none;
+                /* Hide main menu on smaller screens for now */
+            }
+            .main-header .main-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .main-header .site-branding {
+                flex-basis: 100%;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+            .main-header .header-actions {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+            .shop-page-header h1 {
+                font-size: 2.2em;
+            }
+            .shop-page-header p {
+                font-size: 1em;
+            }
+            .main-footer .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .main-header .header-top {
+                flex-direction: column;
+            }
+            .main-header .contact-info span {
+                margin-bottom: 10px;
+            }
+            .product-card-content h3 {
+                font-size: 1.5em;
+            }
+            .product-card-content .price {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container header-top">
+            <div class="contact-info">
+                <span><i class="fas fa-phone-alt"></i> +255 784 123 456</span>
+                <span><i class="fas fa-envelope"></i> info@likindydigital.co.tz</span>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="container main-nav">
+            <div class="site-branding">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="Likindy Digital Solution Logo">
+                </a>
+            </div>
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="search.html" title="Search"><i class="fas fa-search"></i></a>
+                <a href="login.html" title="My Account"><i class="fas fa-user"></i></a>
+                <a href="cart.html" title="Cart"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="shop-page-header">
+            <div class="container">
+                <h1 class="section-title" style="margin-bottom: 20px; border-bottom: none;">All Mobile Accessories</h1>
+                <p style="text-align: center; font-size: 1.1em; color: var(--secondary-grey);">Browse our wide range of quality mobile phone covers, screen protectors, chargers, earphones, and more!</p>
+            </div>
+        </section>
+
+        <section class="products-list container">
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="assets/images/shope.jpg" alt="Heavy Duty Phone Cover">
+                    <div class="product-card-content">
+                        <h3>Heavy Duty Phone Cover</h3>
+                        <p class="description">Durable and shock-absorbent phone cover providing ultimate protection against drops and scratches.</p>
+                        <p class="price">Tsh 25,000.00</p>
+                        <a href="product-single.html?id=101" class="view-details-button">View Details</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="assets/images/flash.jpg" alt="Fast Charge Adapter (Type C)">
+                    <div class="product-card-content">
+                        <h3>Fast Charge Adapter (Type C)</h3>
+                        <p class="description">High-speed charging adapter with Type-C output, compatible with modern smartphones.</p>
+                        <p class="price">Tsh 15,000.00</p>
+                        <a href="product-single.html?id=102" class="view-details-button">View Details</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="assets/images/earphone.jpg" alt="Wireless Earbuds">
+                    <div class="product-card-content">
+                        <h3>Wireless Earbuds</h3>
+                        <p class="description">High-fidelity wireless earbuds with comfortable fit and long battery life.</p>
+                        <p class="price">Tsh 15,000.00</p>
+                        <a href="product-single.html?id=103" class="view-details-button">View Details</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="assets/images/downl.jpeg" alt="10000mAh Power Bank">
+                    <div class="product-card-content">
+                        <h3>10000mAh Power Bank</h3>
+                        <p class="description">Portable power bank for on-the-go charging, features fast charging capabilities.</p>
+                        <p class="price">Tsh 25,000.00</p>
+                        <a href="product-single.html?id=104" class="view-details-button">View Details</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="assets/images/ic.jpeg" alt="Universal Phone IC Chip Set">
+                    <div class="product-card-content">
+                        <h3>Universal Phone IC Chip Set</h3>
+                        <p class="description">Essential integrated circuits for advanced mobile phone repairs and component replacement.</p>
+                        <p class="price">Tsh 12,000.00</p>
+                        <a href="product-single.html?id=105" class="view-details-button">View Details</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="assets/images/BET.jpg" alt="High-Capacity Replacement Battery">
+                    <div class="product-card-content">
+                        <h3>High-Capacity Replacement Battery</h3>
+                        <p class="description">Brand new high-capacity replacement battery for extended phone usage.</p>
+                        <p class="price">Tsh 6,000.00</p>
+                        <a href="product-single.html?id=106" class="view-details-button">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <p>Likindy Digital Solution offers expert mobile phone repair services, high-quality accessories, and professional IT solutions. We are committed to reliability and customer satisfaction.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Zanzibar, Tanzania</p>
+                <p><i class="fas fa-phone-alt"></i> +255 625415484</p>
+                <p><i class="fas fa-envelope"></i> info@likindydigital.co.tz</p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; Likindy Digital All Rights Reserved 2025</p>
+        </div>
+    </footer>
+</body>
+
+</html>

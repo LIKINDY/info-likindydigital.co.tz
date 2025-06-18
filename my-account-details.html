@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Details - Likindy Digital Solution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global CSS Variables (from Logo colors) */
+        
+         :root {
+            --primary-dark: #0F2038;
+            /* Dark Blue from Logo text */
+            --secondary-grey: #6C7A89;
+            /* Grey from Logo sub-text */
+            --background-light: #f0f2f5;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --light-grey-border: #e0e0e0;
+            --accent-blue: #3498db;
+            /* A bright blue for links/buttons */
+            --accent-hover: #2980b9;
+            --cta-green: #2ecc71;
+            /* For "Add to Cart" or success */
+            --cta-green-hover: #27ae60;
+            --error-red: #e74c3c;
+            /* Specific for error messages */
+            --success-green: #27ae60;
+            /* Specific for success messages */
+            --danger-red: #e74c3c;
+            /* For password section header or delete actions */
+        }
+        /* General Body and Font Settings */
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        /* Container for content centering and responsiveness */
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        /* Header Styling */
+        
+        .site-header {
+            background-color: var(--white);
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .site-branding img {
+            max-height: 60px;
+            /* Adjust logo size */
+            width: auto;
+            border-radius: 8px;
+            /* Rounded corners for logo */
+        }
+        /* Navigation Menu */
+        
+        .main-nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            /* Align items vertically */
+            gap: 25px;
+            /* Space between menu items */
+        }
+        
+        .main-nav ul li a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 1.05em;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+        
+        .main-nav ul li a:hover {
+            color: var(--accent-blue);
+        }
+        /* Search Form in Header */
+        
+        .header-search-form {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .header-search-form input[type="search"] {
+            padding: 8px 15px;
+            border: 1px solid var(--light-grey-border);
+            border-radius: 20px;
+            /* More rounded */
+            font-size: 0.95em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            width: 180px;
+            /* Default width */
+        }
+        
+        .header-search-form input[type="search"]:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+        
+        .header-search-form button {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: background-color 0.3s ease;
+        }
+        
+        .header-search-form button:hover {
+            background-color: var(--accent-hover);
+        }
+        
+        .header-search-form button i {
+            margin-right: 5px;
+            /* Space between icon and text if any */
+        }
+        /* Footer Styling */
+        
+        .site-footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 40px 0;
+            text-align: center;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            margin-top: 50px;
+            /* Add some space above footer */
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: flex-start;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin: 15px;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: var(--accent-blue);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--white);
+        }
+        
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 10px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 20px;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        /* My Account Specific Styles */
+        
+        .my-account-header {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .my-account-header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .my-account-header p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .account-dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            /* Sidebar and main content */
+            gap: 30px;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+        
+        .account-sidebar {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            align-self: start;
+            /* Stick to top */
+        }
+        
+        .account-sidebar h3 {
+            font-size: 1.8em;
+            color: var(--primary-dark);
+            margin-top: 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--light-grey-border);
+            padding-bottom: 10px;
+        }
+        
+        .account-sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .account-sidebar ul li {
+            margin-bottom: 10px;
+        }
+        
+        .account-sidebar ul li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 600;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        .account-sidebar ul li a:hover,
+        .account-sidebar ul li a.active {
+            background-color: var(--accent-blue);
+            color: var(--white);
+        }
+        
+        .account-sidebar ul li a i {
+            margin-right: 10px;
+        }
+        
+        .account-main-content {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .account-main-content h2 {
+            font-size: 2em;
+            color: var(--primary-dark);
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 10px;
+        }
+        /* Form Styles (reusing general styles) */
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            font-size: 1.05em;
+        }
+        
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="tel"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--light-grey-border);
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+        
+        .form-group input[type="email"][readonly] {
+            background-color: #f0f0f0;
+            cursor: not-allowed;
+        }
+        
+        .form-actions button {
+            background-color: var(--cta-green);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: auto;
+            margin-top: 15px;
+            display: inline-block;
+            /* Allow buttons to sit side-by-side */
+        }
+        
+        .form-actions button:hover {
+            background-color: var(--cta-green-hover);
+            transform: translateY(-2px);
+        }
+        /* Password section specific styles */
+        
+        .password-section {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--light-grey-border);
+        }
+        
+        .password-section h2 {
+            border-color: var(--danger-red);
+            /* Different color for password section header */
+        }
+        
+        .password-section .form-actions button {
+            background-color: var(--primary-dark);
+        }
+        
+        .password-section .form-actions button:hover {
+            background-color: var(--accent-hover);
+        }
+        /* Message styling (for static demonstration) */
+        
+        .message {
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            text-align: center;
+            opacity: 0.9;
+        }
+        
+        .message.error {
+            background-color: #fdd;
+            color: var(--error-red);
+            border: 1px solid var(--error-red);
+        }
+        
+        .message.success {
+            background-color: #dff0d8;
+            color: var(--success-green);
+            border: 1px solid var(--success-green);
+        }
+        /* Responsive adjustments */
+        
+        @media (max-width: 768px) {
+            .account-dashboard-grid {
+                grid-template-columns: 1fr;
+                /* Stack vertically on small screens */
+            }
+            .my-account-header h1 {
+                font-size: 2.2em;
+            }
+            .form-group input,
+            .form-actions button {
+                font-size: 0.95em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-content">
+            <div class="site-branding">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="Likindy Digital Solution Logo">
+                </a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="cart.html"><i class="fa-solid fa-shopping-cart"></i> Cart</a></li>
+                    <li class="header-search-item">
+                        <form action="shop.html" method="GET" class="header-search-form">
+                            <input type="search" name="search_query" placeholder="Search products...">
+                            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                    </li>
+                    <li><a href="login.html"><i class="fa-solid fa-sign-in-alt"></i> Login</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="my-account-header">
+                <h1>Account Details</h1>
+                <p>Update your personal information and manage your password.</p>
+            </section>
+
+            <div class="account-dashboard-grid">
+                <aside class="account-sidebar">
+                    <h3>My Account</h3>
+                    <ul>
+                        <li><a href="my-account.html"><i class="fa-solid fa-gauge-high"></i> Dashboard</a></li>
+                        <li><a href="my-account-orders.html"><i class="fa-solid fa-box-open"></i> My Orders</a></li>
+                        <li><a href="my-account-details.html" class="active"><i class="fa-solid fa-user-circle"></i> Account Details</a></li>
+                        <li><a href="logout.html"><i class="fa-solid fa-sign-out-alt"></i> Logout</a></li>
+                    </ul>
+                </aside>
+
+                <section class="account-main-content">
+                    <h2>Personal Information</h2>
+                    <form method="POST" action="#">
+                        <div class="form-group">
+                            <label for="full_name">Full Name:</label>
+                            <input type="text" id="full_name" name="full_name" value="John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" name="email" value="john.doe@example.com" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone_number">Phone Number (Optional):</label>
+                            <input type="tel" id="phone_number" name="phone_number" value="+255 712 345 678" placeholder="+255 7XX XXX XXX">
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" name="update_details"><i class="fa-solid fa-save"></i> Save Changes</button>
+                        </div>
+                    </form>
+
+                    <div class="password-section">
+                        <h2>Change Password</h2>
+                        <form method="POST" action="#">
+                            <div class="form-group">
+                                <label for="current_password">Current Password:</label>
+                                <input type="password" id="current_password" name="current_password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new_password">New Password:</label>
+                                <input type="password" id="new_password" name="new_password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_new_password">Confirm New Password:</label>
+                                <input type="password" id="confirm_new_password" name="confirm_new_password" required>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" name="change_password"><i class="fa-solid fa-key"></i> Change Password</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h4>About Likindy Digital</h4>
+                <p>Your one-stop solution for quality mobile accessories and professional phone repair services in Mtoni Kwa Kisasi, Zanzibar. We ensure your devices are always in top condition.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="shop.html"><i class="fa-solid fa-bag-shopping"></i> Shop</a></li>
+                    <li><a href="services.html"><i class="fa-solid fa-screwdriver-wrench"></i> Services</a></li>
+                    <li><a href="about.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+                    <li><a href="contact.html"><i class="fa-solid fa-envelope"></i> Contact Us</a></li>
+                    <li><a href="faq.html"><i class="fa-solid fa-question-circle"></i> FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Contact Us</h4>
+                <p><strong><i class="fa-solid fa-location-dot"></i> Location:</strong> MTONI KWA KISASI, Zanzibar, Tanzania</p>
+                <p><strong><i class="fa-solid fa-envelope"></i> Email:</strong> <a href="mailto:likindyismail@gmail.com">likindyismail@gmail.com</a></p>
+                <p><strong><i class="fa-solid fa-phone"></i> Phone:</strong> <a href="tel:+255658415488">+255 658 415488</a></p>
+                <p><strong><i class="fa-solid fa-mobile-alt"></i> Alt. Phone:</strong> <a href="tel:+255625415484">+255 625 415484</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; Likindy Digital All Rights Reserved 2025</p>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged Out - Likindy Digital Solution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General styling for the page */
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            /* Light background */
+            color: #333333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .logout-container {
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .logout-container h2 {
+            font-size: 2.2em;
+            color: #0F2038;
+            /* Primary dark color */
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .logout-container h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 70px;
+            height: 3px;
+            background-color: #3498db;
+            /* Accent blue */
+            border-radius: 2px;
+        }
+        
+        .logout-container p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            color: #6C7A89;
+        }
+        
+        .logout-container .return-link {
+            display: inline-block;
+            background-color: #3498db;
+            /* Accent blue */
+            color: white;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .logout-container .return-link:hover {
+            background-color: #2980b9;
+            /* Accent hover */
+            transform: translateY(-2px);
+        }
+        
+        .logout-container .return-link i {
+            margin-right: 8px;
+        }
+        /* Message for static context */
+        
+        .static-note {
+            margin-top: 30px;
+            font-size: 0.9em;
+            color: #a0a0a0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logout-container">
+        <h2>You Have Been Logged Out</h2>
+        <p>This is a static representation of a logout page. In a real application, clicking a logout link would typically destroy your session and redirect you automatically.</p>
+        <p>Thank you for visiting Likindy Digital Solution.</p>
+        <a href="login.html" class="return-link"><i class="fa-solid fa-sign-in-alt"></i> Go to Login Page</a>
+        <a href="index.html" class="return-link" style="margin-left: 15px;"><i class="fa-solid fa-house"></i> Go to Homepage</a>
+    </div>
+
+    <p class="static-note">
+        Note: This is a static HTML page and does not perform actual logout operations. In a dynamic web application, this action is handled by server-side code (e.g., PHP).
+    </p>
+</body>
+
+</html>

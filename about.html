@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>About Likindy Digital Solution</title>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Define your CSS variables if they are in a separate file, or just use direct values */
+        
+         :root {
+            --primary-dark: #0F2038;
+            --accent-blue: #3498db;
+            --white: #ffffff;
+            --background-light: #f8f9fa;
+            /* A lighter background for cards */
+            --light-grey-border: #e0e0e0;
+            --text-dark: #333;
+            --secondary-grey: #6c757d;
+            --cta-green: #28a745;
+            --cta-green-hover: #218838;
+            --accent-hover: #2980b9;
+            /* Added for general hover effect consistency */
+        }
+        /* General Body and Container styles (can be from a main.css) */
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* Hero Section (from main.css or adapted) */
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('mobilerepair1.jpg') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-section h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .hero-section p {
+            font-size: 1.3em;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+            opacity: 0;
+            /* Start hidden for animation */
+        }
+        /* Call to Action Buttons (CTA) - General styles */
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--cta-green);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-button:hover {
+            background-color: var(--cta-green-hover);
+            transform: translateY(-2px);
+        }
+        /* Navigation Bar (example from a header.html if you had one) */
+        
+        .navbar {
+            background-color: var(--primary-dark);
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar .logo img {
+            height: 50px;
+            /* Adjust as needed */
+        }
+        
+        .navbar-links ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+        
+        .navbar-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 0;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .navbar-links a:hover,
+        .navbar-links a.active {
+            color: var(--accent-blue);
+            border-bottom: 2px solid var(--accent-blue);
+        }
+        /* Mobile menu button */
+        
+        .menu-toggle {
+            display: none;
+            color: var(--white);
+            font-size: 1.8em;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--primary-dark);
+                position: absolute;
+                top: 70px;
+                /* Adjust based on navbar height */
+                left: 0;
+                padding: 10px 0;
+                z-index: 1000;
+            }
+            .navbar-links.active {
+                display: flex;
+            }
+            .navbar-links ul {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            .navbar-links a {
+                padding: 10px 0;
+                display: block;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Specific styles for the About Us page */
+        
+        .about-header {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .about-header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .about-header p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .about-content {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .about-content h2 {
+            font-size: 2.2em;
+            color: var(--primary-dark);
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--accent-blue);
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        
+        .about-content p {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+        
+        .about-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .about-feature-card {
+            background-color: var(--background-light);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .about-feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .about-feature-card h3 {
+            font-size: 1.5em;
+            color: var(--accent-blue);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .about-feature-card p {
+            font-size: 0.95em;
+            color: var(--secondary-grey);
+            line-height: 1.6;
+        }
+        /* CTA Section at the bottom of the About page */
+        
+        .cta-section {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--primary-dark);
+            color: var(--white);
+            border-radius: 15px;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            /* Adjust as needed */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .cta-section p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+        /* Footer (example from a footer.html if you had one) */
+        
+        .footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9em;
+            margin-top: 40px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            text-align: left;
+            max-width: 1200px;
+            margin: 0 auto 30px auto;
+            gap: 20px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-section h3 {
+            color: var(--accent-blue);
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .footer-section p,
+        .footer-section ul {
+            color: #ccc;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 20px;
+            color: #aaa;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            color: var(--accent-blue);
+        }
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        /* Responsive adjustments */
+        
+        @media (max-width: 768px) {
+            .about-header h1 {
+                font-size: 2.2em;
+            }
+            .about-header p {
+                font-size: 1em;
+            }
+            .about-content h2 {
+                font-size: 1.8em;
+            }
+            .about-content {
+                padding: 20px;
+            }
+            .cta-section h2 {
+                font-size: 2em;
+            }
+            .cta-section p {
+                font-size: 1em;
+            }
+            .cta-button {
+                display: block;
+                margin: 10px auto !important;
+                /* Override inline styles */
+                width: fit-content;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="Likindy Digital Solution Logo">
+                    </a>
+                </div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="navbar-links" id="navbar-links">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html" class="active">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="admin.html">Admin Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <section class="about-header">
+            <h1>About Likindy Digital Solution</h1>
+            <p>Your Reliable Partner for Mobile Accessories & Expert Repairs</p>
+        </section>
+
+        <section class="about-content">
+            <h2>Our Story</h2>
+            <p>
+                Likindy Digital Solution was founded in 2023 with a vision to become the leading provider of quality mobile phone accessories and trusted repair services in Tanzania. Located in MTONI KWA KISASI, Dar es Salaam, we started as a small shop driven by a passion
+                for technology and a commitment to serving our community's growing digital needs.
+            </p>
+            <p>
+                We quickly realized the gap in the market for reliable, honest, and professional mobile repair, alongside genuine and durable accessories. Our aim is not just to sell products or fix phones, but to build lasting relationships with our customers by providing
+                exceptional service and value. We believe in empowering our customers to get the most out of their mobile devices, ensuring longevity and optimal performance.
+            </p>
+
+            <h2>Our Mission</h2>
+            <p>
+                Our mission is to provide high-quality, affordable mobile accessories and expert repair services, ensuring customer satisfaction through professionalism, transparency, and technical excellence. We strive to be "more than a professional" by going the extra
+                mile for every client.
+            </p>
+
+            <h2>Why Choose Us?</h2>
+            <div class="about-feature-grid">
+                <div class="about-feature-card">
+                    <h3>Quality Products</h3>
+                    <p>We source only the best mobile accessories, from durable phone covers and reliable screen protectors to fast chargers and high-fidelity earphones, ensuring authenticity and performance.</p>
+                </div>
+                <div class="about-feature-card">
+                    <h3>Expert Repair Technicians</h3>
+                    <p>Our skilled technicians are trained to handle a wide range of mobile phone issues, including screen replacements, battery problems, charging system repairs, and complex software solutions.</p>
+                </div>
+                <div class="about-feature-card">
+                    <h3>Customer-Centric Service</h3>
+                    <p>Your satisfaction is our priority. We offer transparent pricing, clear communication, and personalized solutions to meet your specific needs. We're dedicated to quick and efficient service.</p>
+                </div>
+                <div class="about-feature-card">
+                    <h3>Local & Accessible</h3>
+                    <p>Conveniently located at MTONI KWA KISASI, Zanzibar, we are easily accessible for all your mobile needs. We are proud to serve our local community and beyond.</p>
+                </div>
+            </div>
+
+            <h2>Our Vision</h2>
+            <p>
+                To be the most trusted and sought-after mobile solution provider in Tanzania, continually adapting to technological advancements and exceeding customer expectations. We aim to grow our services while maintaining the personal touch that defines Likindy
+                Digital Solution.
+            </p>
+        </section>
+
+        <section class="cta-section container">
+            <h2>Ready to Experience the Likindy Difference?</h2>
+            <p>Explore our products or get a quote for your repair today. We are here to help!</p>
+            <a href="shop.html" class="cta-button" style="margin-right: 15px;">Shop Accessories</a>
+            <a href="contact.html" class="cta-button" style="background-color: var(--accent-blue);">Request Repair</a>
+        </section>
+
+    </div>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>About Likindy</h3>
+                <p>Your trusted partner for mobile phone accessories and expert repair services in ZANZIBAR.</p>
+                <div class="social-icons" style="margin-top: 15px;">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="shop.html">Shop</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="admin.html">Admin Login</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fa fa-map-marker-alt"></i> MTONI KWA KISASI, Zanzibar, Tanzania</p>
+                <p><i class="fa fa-phone"></i> +255 625415484</p>
+                <p><i class="fa fa-envelope"></i> info@likindy.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Likindy Digital Solution. All rights reserved.
+        </div>
+    </footer>
+    <script>
+        // Simple JavaScript for mobile menu toggle (if you had one in header.php)
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navbarLinks = document.getElementById('navbar-links');
+
+            if (mobileMenu && navbarLinks) {
+                mobileMenu.addEventListener('click', function() {
+                    navbarLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>

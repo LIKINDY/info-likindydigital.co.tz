@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Likindy Digital Solution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global CSS Variables */
+        
+         :root {
+            --primary-dark: #0F2038;
+            /* Dark Blue from Logo text */
+            --secondary-grey: #6C7A89;
+            /* Grey from Logo sub-text */
+            --background-light: #f0f2f5;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --light-grey-border: #e0e0e0;
+            --accent-blue: #3498db;
+            /* A bright blue for links/buttons */
+            --accent-hover: #2980b9;
+            --cta-green: #2ecc71;
+            /* For "Add to Cart" or success */
+            --cta-green-hover: #27ae60;
+            --error-red: #e74c3c;
+            /* Specific for error messages */
+            --success-green: #27ae60;
+            /* Specific for success messages */
+        }
+        /* General Body and Font Settings */
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        /* Container for content centering and responsiveness */
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        /* Main Header Styles */
+        
+        .main-header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .main-header .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--light-grey-border);
+            margin-bottom: 10px;
+        }
+        
+        .main-header .contact-info span,
+        .main-header .social-links a {
+            font-size: 0.9em;
+            color: var(--secondary-grey);
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        
+        .main-header .social-links a:hover {
+            color: var(--primary-dark);
+        }
+        
+        .main-header .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .main-header .site-branding img {
+            max-height: 50px;
+            width: auto;
+            border-radius: 8px;
+        }
+        
+        .main-header .main-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        .main-header .main-menu li {
+            margin-left: 30px;
+        }
+        
+        .main-header .main-menu a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 600;
+            font-size: 1.05em;
+            transition: color 0.3s ease;
+        }
+        
+        .main-header .main-menu a:hover,
+        .main-header .main-menu a.active {
+            color: var(--accent-blue);
+        }
+        
+        .main-header .header-actions {
+            display: flex;
+            align-items: center;
+        }
+        
+        .main-header .header-actions a {
+            color: var(--primary-dark);
+            font-size: 1.2em;
+            margin-left: 20px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .main-header .header-actions a:hover {
+            color: var(--accent-blue);
+        }
+        /* Hero Section (Common style for page headers) */
+        
+        .services-page-header {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .services-page-header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .services-page-header p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        /* Section Title (Common) */
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            color: var(--primary-dark);
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-blue);
+            border-radius: 2px;
+        }
+        /* Services List Container */
+        
+        .services-list-container {
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+        /* Service Grid */
+        
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px 0;
+        }
+        /* Service Card */
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--light-grey-border);
+        }
+        
+        .service-card-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        
+        .service-card-content h3 {
+            font-size: 1.8em;
+            color: var(--primary-dark);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .service-card-content .description {
+            font-size: 0.95em;
+            color: var(--secondary-grey);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        
+        .service-card-content .price {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: var(--accent-blue);
+            margin-bottom: 20px;
+        }
+        
+        .service-card-content .view-details-button {
+            display: inline-block;
+            background-color: var(--cta-green);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+        }
+        
+        .service-card-content .view-details-button:hover {
+            background-color: var(--cta-green-hover);
+            transform: translateY(-2px);
+        }
+        /* Call to Action Section (Common) */
+        
+        .cta-section {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 60px 40px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 80px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-section h2 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .cta-section p {
+            font-size: 1.15em;
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+            opacity: 0.9;
+        }
+        
+        .cta-section .cta-button {
+            display: inline-block;
+            background-color: var(--cta-green);
+            color: var(--white);
+            padding: 15px 35px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .cta-section .cta-button:hover {
+            background-color: var(--cta-green-hover);
+            transform: translateY(-3px);
+        }
+        /* Main Footer Styles */
+        
+        .main-footer {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 40px 0 20px 0;
+            font-size: 0.95em;
+        }
+        
+        .main-footer .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .main-footer .footer-col h4 {
+            color: var(--accent-blue);
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        .main-footer .footer-col p,
+        .main-footer .footer-col ul {
+            color: rgba(255, 255, 255, 0.7);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .main-footer .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .main-footer .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .main-footer .footer-col ul li a:hover {
+            color: var(--white);
+        }
+        
+        .main-footer .social-links a {
+            color: var(--white);
+            font-size: 1.5em;
+            margin-right: 15px;
+            transition: color 0.3s ease;
+        }
+        
+        .main-footer .social-links a:hover {
+            color: var(--accent-blue);
+        }
+        
+        .main-footer .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85em;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        /* Responsive Adjustments */
+        
+        @media (max-width: 992px) {
+            .main-header .main-menu {
+                display: none;
+                /* Hide main menu on smaller screens for now */
+            }
+            .main-header .main-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .main-header .site-branding {
+                flex-basis: 100%;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+            .main-header .header-actions {
+                margin-top: 15px;
+                width: 100%;
+                justify-content: center;
+            }
+            .services-page-header h1 {
+                font-size: 2.2em;
+            }
+            .services-page-header p {
+                font-size: 1em;
+            }
+            .cta-section {
+                padding: 40px 20px;
+            }
+            .cta-section h2 {
+                font-size: 2em;
+            }
+            .main-footer .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .main-header .header-top {
+                flex-direction: column;
+            }
+            .main-header .contact-info span {
+                margin-bottom: 10px;
+            }
+            .service-card-content h3 {
+                font-size: 1.5em;
+            }
+            .service-card-content .price {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="container header-top">
+            <div class="contact-info">
+                <span><i class="fas fa-phone-alt"></i> +255 784 123 456</span>
+                <span><i class="fas fa-envelope"></i> info@likindydigital.co.tz</span>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+        <div class="container main-nav">
+            <div class="site-branding">
+                <a href="index.html" class="logo-link">
+                    <img src="logo.png" alt="Likindy Digital Solution Logo">
+                </a>
+            </div>
+            <nav class="main-menu">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <a href="search.html" title="Search"><i class="fas fa-search"></i></a>
+                <a href="login.html" title="My Account"><i class="fas fa-user"></i></a>
+                <a href="cart.html" title="Cart"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="services-page-header">
+                <h1>Our Expert Repair Services</h1>
+                <p>At Likindy Digital Solution, we specialize in comprehensive mobile phone repair services. From broken screens to complex system issues, our skilled technicians ensure your device is restored to optimal condition.</p>
+            </section>
+
+            <section class="services-list-container">
+                <h2 class="section-title">What We Offer</h2>
+                <div class="service-grid">
+                    <div class="service-card service-detail-anchor" id="service-screen-replacement">
+                        <img src="assets/images/mobilerepair1.jpg" alt="Screen Replacement Service">
+                        <div class="service-card-content">
+                            <h3>Screen Replacement</h3>
+                            <p style="font-style: italic; color: var(--secondary-grey); font-size: 0.9em; margin-top: -8px; margin-bottom: 10px;">Kubadilisha Kioo</p>
+                            <p class="description">
+                                Expert screen replacement for all major smartphone brands, using high-quality parts to restore display clarity and touch functionality.
+                            </p>
+                            <p class="price">
+                                Base Price: Tsh 15,000.00
+                            </p>
+                            <a href="contact.html?service=Screen%20Replacement" class="view-details-button">Get a Quote</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card service-detail-anchor" id="service-battery-replacement">
+                        <img src="assets/images/service2.jpg" alt="Battery Replacement Service">
+                        <div class="service-card-content">
+                            <h3>Battery Replacement</h3>
+                            <p style="font-style: italic; color: var(--secondary-grey); font-size: 0.9em; margin-top: -8px; margin-bottom: 10px;">Kubadilisha Betri</p>
+                            <p class="description">
+                                Fast and reliable battery replacement services to fix charging issues and extend your phone's battery life.
+                            </p>
+                            <p class="price">
+                                Base Price: Tsh 15,000.00
+                            </p>
+                            <a href="contact.html?service=Battery%20Replacement" class="view-details-button">Get a Quote</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card service-detail-anchor" id="service-charging-port">
+                        <img src="assets/images/pngtree-phone-repair-service-pro-png-image_15060154.jpg" alt="Charging Port Repair Service">
+                        <div class="service-card-content">
+                            <h3>Charging Port Repair</h3>
+                            <p style="font-style: italic; color: var(--secondary-grey); font-size: 0.9em; margin-top: -8px; margin-bottom: 10px;">Urekebishaji wa Soketi ya Chaji</p>
+                            <p class="description">
+                                Fixing loose, damaged, or non-functional charging ports to ensure proper power delivery to your device.
+                            </p>
+                            <p class="price">
+                                Base Price: Tsh 10,000.00
+                            </p>
+                            <a href="contact.html?service=Charging%20Port%20Repair" class="view-details-button">Get a Quote</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card service-detail-anchor" id="service-water-damage">
+                        <img src="assets/images/samsung1.jpg" alt="Water Damage Restoration Service">
+                        <div class="service-card-content">
+                            <h3>Water Damage Restoration</h3>
+                            <p style="font-style: italic; color: var(--secondary-grey); font-size: 0.9em; margin-top: -8px; margin-bottom: 10px;">Urekebishaji wa Uharibifu wa Maji</p>
+                            <p class="description">
+                                Comprehensive cleaning and repair for phones that have suffered from liquid exposure, aiming to salvage your device.
+                            </p>
+                            <p class="price">
+                                Price: Custom Quote
+                            </p>
+                            <a href="contact.html?service=Water%20Damage%20Restoration" class="view-details-button">Get a Quote</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card service-detail-anchor" id="service-software">
+                        <img src="assets/images/iphoneb.jpeg" alt="Software Troubleshooting Service">
+                        <div class="service-card-content">
+                            <h3>Software Troubleshooting</h3>
+                            <p style="font-style: italic; color: var(--secondary-grey); font-size: 0.9em; margin-top: -8px; margin-bottom: 10px;">Utatuzi wa Programu</p>
+                            <p class="description">
+                                Resolving software glitches, operating system errors, slow performance, and app crashes to get your phone running smoothly.
+                            </p>
+                            <p class="price">
+                                Base Price: Tsh 50,000.00
+                            </p>
+                            <a href="contact.html?service=Software%20Troubleshooting" class="view-details-button">Get a Quote</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card service-detail-anchor" id="service-audio">
+                        <img src="assets/images/earphone.jpg" alt="Speaker and Microphone Repair Service">
+                        <div class="service-card-content">
+                            <h3>Speaker & Microphone Repair</h3>
+                            <p style="font-style: italic; color: var(--secondary-grey); font-size: 0.9em; margin-top: -8px; margin-bottom: 10px;">Urekebishaji wa Spika na Maikrofoni</p>
+                            <p class="description">
+                                Repair or replacement of faulty speakers and microphones to restore clear audio for calls and media.
+                            </p>
+                            <p class="price">
+                                Base Price: Tsh 2,000.00
+                            </p>
+                            <a href="contact.html?service=Speaker%20&%20Microphone%20Repair" class="view-details-button">Get a Quote</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cta-section container" style="margin-top: 50px;">
+                <h2>Ready for a Repair?</h2>
+                <p>Don't let a broken phone disrupt your life. Contact us today for a free consultation and personalized quote for your mobile repair needs.</p>
+                <a href="contact.html" class="cta-button">Contact Our Experts</a>
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <p>Likindy Digital Solution offers expert mobile phone repair services, high-quality accessories, and professional IT solutions. We are committed to reliability and customer satisfaction.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <p><i class="fas fa-map-marker-alt"></i> Zanzibar, Tanzania</p>
+                <p><i class="fas fa-phone-alt"></i> +255 625415484</p>
+                <p><i class="fas fa-envelope"></i> info@likindydigital.co.tz</p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; Likindy Digital All Rights Reserved 2025</p>
+        </div>
+    </footer>
+</body>
+
+</html>

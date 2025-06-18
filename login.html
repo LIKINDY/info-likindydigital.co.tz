@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Likindy Digital Solution</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global CSS Variables (from Logo colors) */
+        
+         :root {
+            --primary-dark: #0F2038;
+            /* Dark Blue from Logo text */
+            --secondary-grey: #6C7A89;
+            /* Grey from Logo sub-text */
+            --background-light: #f0f2f5;
+            --white: #ffffff;
+            --text-dark: #333333;
+            --light-grey-border: #e0e0e0;
+            --accent-blue: #3498db;
+            /* A bright blue for links/buttons */
+            --accent-hover: #2980b9;
+            --cta-green: #2ecc71;
+            /* For "Add to Cart" or success */
+            --cta-green-hover: #27ae60;
+            --error-red: #e74c3c;
+            --success-green: #27ae60;
+        }
+        /* General Body and Font Settings */
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* Ensure it takes full viewport height */
+        }
+        /* Container for content centering and responsiveness */
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        /* Authentication Container (for login/register forms) */
+        
+        .auth-container {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+        
+        .auth-container h2 {
+            font-size: 2.2em;
+            color: var(--primary-dark);
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .auth-container h2::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent-blue);
+            border-radius: 2px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        
+        .form-group input[type="email"],
+        .form-group input[type="password"],
+        .form-group input[type="text"] {
+            width: calc(100% - 22px);
+            /* Account for padding and border */
+            padding: 12px;
+            border: 1px solid var(--light-grey-border);
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .form-group input[type="email"]:focus,
+        .form-group input[type="password"]:focus,
+        .form-group input[type="text"]:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+            outline: none;
+        }
+        
+        .form-actions {
+            margin-top: 30px;
+        }
+        
+        .form-actions button {
+            background-color: var(--cta-green);
+            color: var(--white);
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .form-actions button:hover {
+            background-color: var(--cta-green-hover);
+            transform: translateY(-2px);
+        }
+        
+        .form-link {
+            margin-top: 25px;
+            font-size: 0.95em;
+            color: var(--secondary-grey);
+        }
+        
+        .form-link a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        
+        .form-link a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+        /* Message styling (for static demonstration) */
+        
+        .message {
+            padding: 12px 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            text-align: center;
+            opacity: 0.9;
+        }
+        
+        .message.error {
+            background-color: #fdd;
+            color: var(--error-red);
+            border: 1px solid var(--error-red);
+        }
+        
+        .message.success {
+            background-color: #dff0d8;
+            color: var(--success-green);
+            border: 1px solid var(--success-green);
+        }
+        /* Responsive adjustments */
+        
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 30px 20px;
+                margin: 20px;
+                /* Add margin for smaller screens */
+            }
+            .auth-container h2 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="auth-container">
+            <h2>Login</h2>
+            <form method="POST" action="#">
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" name="login"><i class="fa-solid fa-sign-in-alt"></i> Login</button>
+                </div>
+            </form>
+            <p class="form-link">Don't have an account? <a href="register.html">Register here</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

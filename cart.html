@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Your Shopping Cart - Likindy Digital Solution</title>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Define your CSS variables if they are in a separate file, or just use direct values */
+        
+         :root {
+            --primary-dark: #0F2038;
+            --accent-blue: #3498db;
+            --white: #ffffff;
+            --background-light: #f0f2f5;
+            /* A lighter background for cards */
+            --light-grey-border: #e0e0e0;
+            --text-dark: #333;
+            --secondary-grey: #6c757d;
+            --cta-green: #28a745;
+            --cta-green-hover: #218838;
+            --accent-hover: #2980b9;
+            /* Added for general hover effect consistency */
+            --danger-red: #e74c3c;
+            /* For remove buttons */
+        }
+        /* General Body and Container styles (can be from a main.css) */
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* Hero Section (from main.css or adapted) */
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('mobilerepair1.jpg') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 80px 20px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .hero-section h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .hero-section p {
+            font-size: 1.3em;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+            opacity: 0;
+            /* Start hidden for animation */
+        }
+        /* Call to Action Buttons (CTA) - General styles */
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--cta-green);
+            color: var(--white);
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cta-button:hover {
+            background-color: var(--cta-green-hover);
+            transform: translateY(-2px);
+        }
+        /* Navigation Bar (example from a header.html if you had one) */
+        
+        .navbar {
+            background-color: var(--primary-dark);
+            padding: 10px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar .logo img {
+            height: 50px;
+            /* Adjust as needed */
+        }
+        
+        .navbar-links ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+        
+        .navbar-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 5px 0;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        
+        .navbar-links a:hover,
+        .navbar-links a.active {
+            color: var(--accent-blue);
+            border-bottom: 2px solid var(--accent-blue);
+        }
+        /* Mobile menu button */
+        
+        .menu-toggle {
+            display: none;
+            color: var(--white);
+            font-size: 1.8em;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background-color: var(--primary-dark);
+                position: absolute;
+                top: 70px;
+                /* Adjust based on navbar height */
+                left: 0;
+                padding: 10px 0;
+                z-index: 1000;
+            }
+            .navbar-links.active {
+                display: flex;
+            }
+            .navbar-links ul {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            .navbar-links a {
+                padding: 10px 0;
+                display: block;
+            }
+            .menu-toggle {
+                display: block;
+            }
+        }
+        /* Specific styles for the Shopping Cart page */
+        
+        .cart-header {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .cart-header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .cart-header p {
+            font-size: 1.2em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .cart-content-section {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .cart-table th,
+        .cart-table td {
+            padding: 12px 15px;
+            border: 1px solid var(--light-grey-border);
+            text-align: left;
+        }
+        
+        .cart-table th {
+            background-color: var(--primary-dark);
+            color: var(--white);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+        
+        .cart-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .cart-table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .cart-item-quantity input[type="number"] {
+            width: 60px;
+            padding: 8px;
+            border: 1px solid var(--light-grey-border);
+            border-radius: 6px;
+            text-align: center;
+            -moz-appearanc: textfield;
+            /* Remove Firefox number input arrows */
+        }
+        /* Remove Chrome/Safari number input arrows */
+        
+        .cart-item-quantity input[type="number"]::-webkit-outer-spin-button,
+        .cart-item-quantity input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+        .cart-item-actions button {
+            background-color: var(--danger-red);
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.85em;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cart-item-actions button:hover {
+            background-color: #c0392b;
+        }
+        
+        .cart-item-actions button.update-btn {
+            background-color: var(--accent-blue);
+            margin-left: 5px;
+        }
+        
+        .cart-item-actions button.update-btn:hover {
+            background-color: var(--accent-hover);
+        }
+        
+        .cart-summary {
+            margin-top: 30px;
+            border-top: 2px solid var(--light-grey-border);
+            padding-top: 20px;
+            text-align: right;
+        }
+        
+        .cart-summary h3 {
+            font-size: 1.8em;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+        
+        .cart-summary .total-amount {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: var(--accent-blue);
+            margin-bottom: 25px;
+        }
+        
+        .cart-actions {
+            display: flex;
+            justify-content: flex-end;
+            /* Align buttons to the right */
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .cart-actions a,
+        .cart-actions button {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: none;
+            /* For button */
+            cursor: pointer;
+            /* For button */
+        }
+        
+        .cart-actions a:hover,
+        .cart-actions button:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-3px);
+        }
+        
+        .cart-actions a.checkout-button {
+            background-color: var(--cta-green);
+        }
+        
+        .cart-actions a.checkout-button:hover {
+            background-color: var(--cta-green-hover);
+        }
+        /* Message styles (reused from admin pages) */
+        
+        .message {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            opacity: 1;
+            /* Make visible by default in static HTML */
+            /* transition: opacity 0.5s ease-in-out; */
+            /* animation: fadeIn 0.5s forwards; */
+        }
+        
+        .message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        /* @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        } */
+        /* Responsive Table */
+        
+        @media (max-width: 768px) {
+            .cart-table,
+            .cart-table tbody,
+            .cart-table tr,
+            .cart-table td,
+            .cart-table th {
+                display: block;
+                width: 100%;
+            }
+            .cart-table thead {
+                display: none;
+            }
+            .cart-table tr {
+                margin-bottom: 15px;
+                border: 1px solid var(--light-grey-border);
+                border-radius: 12px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            }
+            .cart-table td {
+                text-align: right;
+                padding-left: 50%;
+                position: relative;
+                border: none;
+            }
+            .cart-table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 15px;
+                width: calc(50% - 30px);
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: 600;
+                color: var(--primary-dark);
+            }
+            .cart-actions {
+                flex-direction: column;
+                align-items: center;
+                /* Align buttons to center on mobile */
+            }
+            .cart-actions a,
+            .cart-actions button {
+                width: 100%;
+                /* Full width buttons */
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="logo.png" alt="Likindy Digital Solution Logo">
+                    </a>
+                </div>
+                <div class="menu-toggle" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <div class="navbar-links" id="navbar-links">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="shop.html">Shop</a></li>
+                        <li><a href="cart.html" class="active">Cart</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="admin.html">Admin Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <section class="cart-header">
+            <h1>Your Shopping Cart</h1>
+            <p>Review your selected mobile accessories before proceeding to checkout.</p>
+        </section>
+
+        <section class="cart-content-section">
+            <form method="POST" action="cart.html">
+                <table class="cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Subtotal</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Product">
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <img src="assets/images/earphone.jpg" alt="Wireless Earbuds" class="cart-item-image">
+                                    <span>Wireless Earbuds</span>
+                                </div>
+                            </td>
+                            <td data-label="Price">Tsh 15,000.00</td>
+                            <td data-label="Quantity" class="cart-item-quantity">
+                                <input type="number" name="quantity_101" value="1" min="1" data-product-id="101">
+                                <button type="submit" name="cart_action" value="update_quantity_101" class="update-btn" style="display:none;">Update</button>
+                            </td>
+                            <td data-label="Subtotal">Tsh 50,000.00</td>
+                            <td data-label="Actions" class="cart-item-actions">
+                                <button type="button" class="remove-btn" data-product-id="101">
+                                <i class="fa-solid fa-trash-can"></i> Remove
+                            </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="Product">
+                                <div style="display: flex; align-items: center; gap: 15px;">
+                                    <img src="assets/images/samsung1.jpg" alt="Fast Charger" class="cart-item-image">
+                                    <span>Samsung Fast Charger</span>
+                                </div>
+                            </td>
+                            <td data-label="Price">Tsh 25,000.00</td>
+                            <td data-label="Quantity" class="cart-item-quantity">
+                                <input type="number" name="quantity_102" value="2" min="1" data-product-id="102">
+                                <button type="submit" name="cart_action" value="update_quantity_102" class="update-btn" style="display:none;">Update</button>
+                            </td>
+                            <td data-label="Subtotal">Tsh 50,000.00</td>
+                            <td data-label="Actions" class="cart-item-actions">
+                                <button type="button" class="remove-btn" data-product-id="102">
+                                <i class="fa-solid fa-trash-can"></i> Remove
+                            </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="hidden" name="product_id" id="hiddenProductIdTriggered">
+                <input type="hidden" name="cart_action" id="hiddenCartActionTypeTriggered">
+                <input type="hidden" name="quantity" id="hiddenQuantityTriggered">
+            </form>
+
+            <div class="cart-summary">
+                <h3>Cart Total:</h3>
+                <p class="total-amount">Tsh 100,000.00</p>
+                <div class="cart-actions">
+                    <a href="shop.html"><i class="fa-solid fa-arrow-left"></i> Continue Shopping</a>
+                    <a href="checkout.html" class="checkout-button"><i class="fa-solid fa-credit-card"></i> Proceed to Checkout</a>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const quantityInputs = document.querySelectorAll('.cart-item-quantity input[type="number"]');
+            const removeButtons = document.querySelectorAll('.cart-item-actions .remove-btn');
+            const cartForm = document.querySelector('.cart-content-section form');
+            const hiddenProductId = document.getElementById('hiddenProductIdTriggered');
+            const hiddenCartActionType = document.getElementById('hiddenCartActionTypeTriggered');
+            const hiddenQuantity = document.getElementById('hiddenQuantityTriggered');
+
+            // Function to simulate form submission for static page
+            function simulateFormSubmission(productId, actionType, quantity = null) {
+                alert(`ACTION: ${actionType} for Product ID: ${productId}` + (quantity !== null ? ` with Quantity: ${quantity}` : ''));
+                // In a real application, this would submit to a server-side script
+                // For this static HTML, we just alert the action.
+                // You would normally remove the item from the DOM here if it was 'remove_item'.
+                // For a quantity update, you might re-calculate subtotal in JS.
+            }
+
+            quantityInputs.forEach(input => {
+                let initialQuantity = parseInt(input.value);
+                const productId = input.dataset.productId;
+
+                input.addEventListener('change', function() {
+                    const newQuantity = parseInt(this.value);
+                    if (isNaN(newQuantity) || newQuantity < 0) {
+                        this.value = initialQuantity;
+                        alert('Please enter a valid quantity.');
+                        return;
+                    }
+
+                    if (newQuantity === 0) {
+                        const confirmRemove = confirm('Are you sure you want to remove this product from your cart?');
+                        if (confirmRemove) {
+                            simulateFormSubmission(productId, 'remove_item');
+                            // Optional: remove the row from the table visually
+                            this.closest('tr').remove();
+                            // Re-calculate static total or just display empty cart message
+                            checkAndDisplayEmptyCart();
+                        } else {
+                            this.value = initialQuantity;
+                        }
+                    } else if (newQuantity !== initialQuantity) {
+                        simulateFormSubmission(productId, 'update_quantity', newQuantity);
+                        // Optional: update subtotal on the fly if needed
+                        initialQuantity = newQuantity; // Update initial quantity for next change
+                    }
+                });
+
+                // Also handle blur event
+                input.addEventListener('blur', function() {
+                    const newQuantity = parseInt(this.value);
+                    if (isNaN(newQuantity) || newQuantity < 0) {
+                        this.value = initialQuantity;
+                        return;
+                    }
+                    if (newQuantity !== initialQuantity) {
+                        if (newQuantity === 0) {
+                            const confirmRemove = confirm('Are you sure you want to remove this product from your cart?');
+                            if (confirmRemove) {
+                                simulateFormSubmission(productId, 'remove_item');
+                                this.closest('tr').remove();
+                                checkAndDisplayEmptyCart();
+                            } else {
+                                this.value = initialQuantity;
+                            }
+                        } else {
+                            simulateFormSubmission(productId, 'update_quantity', newQuantity);
+                            initialQuantity = newQuantity;
+                        }
+                    }
+                });
+            });
+
+            removeButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    const productId = this.dataset.productId;
+                    const confirmRemove = confirm('Are you sure you want to remove this product from your cart?');
+                    if (confirmRemove) {
+                        simulateFormSubmission(productId, 'remove_item');
+                        // Remove the row from the table visually
+                        this.closest('tr').remove();
+                        // Check if cart is now empty
+                        checkAndDisplayEmptyCart();
+                    }
+                });
+            });
+
+            function checkAndDisplayEmptyCart() {
+                const tbody = document.querySelector('.cart-table tbody');
+                const cartItems = tbody.querySelectorAll('tr');
+                const cartContentSection = document.querySelector('.cart-content-section');
+                const cartSummary = document.querySelector('.cart-summary');
+                const emptyCartMessage = document.querySelector('.cart-content-section > p'); // Assuming this is the empty message
+
+                if (cartItems.length === 0) {
+                    // If there are no items, hide the table and summary, show empty message
+                    if (cartForm) cartForm.style.display = 'none';
+                    if (cartSummary) cartSummary.style.display = 'none';
+                    // Create and append a new empty message if it doesn't exist, or make visible
+                    let emptyMessageDiv = document.getElementById('empty-cart-message');
+                    if (!emptyMessageDiv) {
+                        emptyMessageDiv = document.createElement('p');
+                        emptyMessageDiv.id = 'empty-cart-message';
+                        emptyMessageDiv.style.cssText = 'text-align: center; padding: 50px 0;';
+                        emptyMessageDiv.innerHTML = 'Your cart is empty. <a href="shop.html" style="color: var(--accent-blue); text-decoration: underline;">Start shopping now!</a>';
+                        cartContentSection.appendChild(emptyMessageDiv);
+                    }
+                    emptyMessageDiv.style.display = 'block';
+                } else {
+                    // Ensure table and summary are visible if items exist
+                    if (cartForm) cartForm.style.display = 'block';
+                    if (cartSummary) cartSummary.style.display = 'block';
+                    if (emptyCartMessage) emptyCartMessage.style.display = 'none';
+                }
+            }
+
+            // Initial check when page loads
+            checkAndDisplayEmptyCart();
+
+            // Simple JavaScript for mobile menu toggle (if you had one in header.php)
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navbarLinks = document.getElementById('navbar-links');
+
+            if (mobileMenu && navbarLinks) {
+                mobileMenu.addEventListener('click', function() {
+                    navbarLinks.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+
+</body>
+
+</html>
